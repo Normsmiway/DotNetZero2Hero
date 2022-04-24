@@ -2,6 +2,7 @@
 
 namespace SOLID
 {
+    
     public class UserRegistration
     {
         private readonly Collection<User> _usersStore;

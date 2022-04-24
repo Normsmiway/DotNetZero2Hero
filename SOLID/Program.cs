@@ -8,17 +8,35 @@ RegisterNewUser(manager);
 
 static void RegisterNewUser(UserManager manager)
 {
+
     while (true)
     {
+        Console.ForegroundColor = ConsoleColor.Blue;
         Console.Write("Enter the username: ");
-        var userName = Console.ReadLine();
+        var userName = Console.ReadLine() ?? string.Empty;
         Console.Write("Enter the password: ");
-        var password = Console.ReadLine();
+        var password = Console.ReadLine() ?? string.Empty;
+        Console.Write("Enter the password: ");
         string userId = Guid.NewGuid().ToString("N");
         manager.Register(userId, userName, password);
-
+        Login(manager);
         Console.WriteLine("====================================");
     }
+}
+
+static void Login(UserManager manager)
+{
+    Console.ForegroundColor = ConsoleColor.Green;
+    Console.WriteLine("++++++++++++Login++++++++++++++++");
+
+    Console.Write("Enter the username: ");
+    var userName = Console.ReadLine() ?? string.Empty;
+    Console.Write("Enter the password: ");
+    var password = Console.ReadLine() ?? string.Empty;
+    Console.Write("Enter the OTP: ");
+    var otp = Console.ReadLine() ?? string.Empty;
+    manager.Login(userName, password, otp);
+    Console.WriteLine("====================================");
 }
 
 #region
