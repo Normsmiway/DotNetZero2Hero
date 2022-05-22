@@ -9,12 +9,12 @@ namespace SOLID
     {
         private readonly Collection<User> _usersStore;
         private readonly UserRegistration _registration;
-        private readonly UserAccess<DefaultLoginModel> _access;
+        private readonly UserAccess<OTPLoginModel> _access;
         public UserManager()
         {
             _usersStore = new();
             _registration = new UserRegistration(_usersStore);
-            _access = new DefaultUserAccess(_usersStore);
+            _access = new OTPBasedUserAccess(_usersStore);
 
         }
         public void Register(string userId, string userName, string password)
@@ -36,7 +36,7 @@ namespace SOLID
         {
             try
             {
-                var model = DefaultLoginModel.Create(userName, password);
+                var model = OTPLoginModel.Create(userName, password, otp);
                 if (_access.Login(model))
                 {// security mechanism
                     Console.WriteLine($"{userName} successfully logged in");
@@ -63,4 +63,6 @@ namespace SOLID
         }
 
     }
+
+
 }

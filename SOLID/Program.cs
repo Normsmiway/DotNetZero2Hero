@@ -1,9 +1,10 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using SOLID;
+using SOLID.Schedule;
 
 Console.WriteLine("Hello, Welcome to X protal");
 var manager = new UserManager();
-RegisterNewUser(manager);
+//RegisterNewUser(manager);
 
 
 static void RegisterNewUser(UserManager manager)
@@ -59,5 +60,13 @@ static void Login(UserManager manager)
 // 2. Print User details each time user logs in
 // 3. Separate users details use case into a single responsibility
 // 4. Password length must not be less that 6 (registration & login)
+#endregion
+
+
+#region Liscov test
+ITrigger triger = new WeeklyTreigger(DayOfWeek.Sunday);
+DateTime date = DateTime.Today;
+
+Scheduler.Run(triger, date);
 #endregion
 
